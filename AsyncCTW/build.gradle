@@ -1,0 +1,85 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.2.RELEASE'
+        slf4jVersion = '1.7.21'
+        log4j2Version = '2.5'
+        commonsLogging = '1.2'
+        eveohAspectj = '1.6'
+        aspectjVersion = '1.8.4'
+    }
+
+    repositories {
+        maven {
+            url("https://maven.eveoh.nl/content/repositories/releases")
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("nl.eveoh:gradle-aspectj:${eveohAspectj}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: "aspectj"
+apply plugin: 'application'
+
+jar {
+    baseName = 'io.dveamer.sample'
+    version =  '0.0.1'
+}
+
+
+sourceSets {
+    main {
+        java {
+            srcDirs += ['src/main/java']
+        }
+        resources {
+            srcDirs += ['src/main/resources']
+        }
+    }
+
+    test {
+        java {
+            srcDirs += ['src/test/java']
+        }
+        resources {
+            srcDirs += ['src/test/resources']
+        }
+    }
+}
+
+repositories {
+    maven {
+        url "http://repo.spring.io/libs-snapshot"
+    }
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+mainClassName = 'io.dveamer.sample.Application'
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
+        exclude module: 'spring-boot-starter-logging'
+    }
+
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+
+    // SLF4J-Log4j2
+    compile("commons-logging:commons-logging:${commonsLogging}")
+    compile("org.slf4j:slf4j-api:${slf4jVersion}")
+    compile("org.apache.logging.log4j:log4j-api:${log4j2Version}")
+    compile("org.apache.logging.log4j:log4j-core:${log4j2Version}")
+    compile("org.apache.logging.log4j:log4j-slf4j-impl:${log4j2Version}")
+
+    // AspectJ - Compile Time Weaver
+    compile("org.springframework:spring-aspects")
+    aspectpath("org.springframework:spring-aspects")
+}
