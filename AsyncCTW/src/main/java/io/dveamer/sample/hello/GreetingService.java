@@ -31,7 +31,7 @@ public class GreetingService {
     }
 
     @Async("threadPoolTaskExecutor")
-    public void method3() {
+    private void method3() {
         logger.info("method 3-1");
         try {
             sleep(100);
