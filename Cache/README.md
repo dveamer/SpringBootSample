@@ -1,15 +1,13 @@
-# SpringBootSample
-
 ## 필요환경
 
-  * JDK 1.7 이상
-  * Gradle
+  * JDK 1.8 이상
+  * Gradle 4.x 이상
 
 ### 내 실행환경
 
   * Ubuntu 14.04 LTS
   * JDK 1.8
-  * Gradle 2.2
+  * Gradle 4.6
 
 ## 실행방법
 
@@ -35,5 +33,4 @@ $ gradle run
 
 ## 테스트 방법
 
-브라우저에서 ```http://127.0.0.1:8080/greeting``` 로 접속하시면 됩니다.  
-
+브라우저에서 ```http://127.0.0.1:8080/menus/members``` 로 접속하시면 됩니다.
