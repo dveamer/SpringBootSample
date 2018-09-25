@@ -1,6 +1,5 @@
 package io.dveamer.sample.menu;
 
-import java.net.URL;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
