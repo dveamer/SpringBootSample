@@ -17,18 +17,13 @@ public class Menu4JavaServiceImpl implements MenuService {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    static CacheManager cacheManager;
-
-    public Menu4JavaServiceImpl(){
-        URL configFile = this.getClass().getResource("/ehcache.xml");
-        cacheManager = new CacheManager(configFile);
-    }
+    CacheManager cacheManager = new CacheManager(getClass().getResource("/ehcache.xml"));
 
     @Override
     public List<Menu> retrieveMenus() throws Exception {
 
-        List<Menu> menus = retrieveMenusOfMember();
-        menus.addAll(retrieveMenusOfAdmin());
+        List<Menu> menus = retrieveMenus(Auth.MEMBER);
+        menus.addAll(retrieveMenus(Auth.ADMIN));
         menus = menus.stream().distinct().collect(Collectors.toList());
 
         return menus;

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" name="MyApp">
     <Appenders>
+        <Console name="STDOUT">
+            <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
+        </Console>
         <RollingRandomAccessFile name="LogApp" fileName="log/app.log" filePattern="log/app/app-%d{yyyy-MM-dd_HH}_%i.log" immediateFlush="false" append="true" ignoreExceptions="false">
             <PatternLayout>
                 <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
@@ -37,6 +40,7 @@
 
     <Loggers>
         <Logger name="io.dveamer.sample" level="info" additivity="false">
+            <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="ASYNC_LogApp"/>
         </Logger>
         <Root level="error">
