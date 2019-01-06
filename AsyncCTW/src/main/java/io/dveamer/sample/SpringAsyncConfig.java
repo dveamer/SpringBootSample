@@ -19,7 +19,7 @@ public class SpringAsyncConfig {
     protected Logger logger = LoggerFactory.getLogger(getClass());
     protected Logger errorLogger = LoggerFactory.getLogger("error");
 
-    @Bean(name = "threadPoolTaskExecutor")
+    @Bean(name = "threadPoolTaskExecutor", destroyMethod = "destroy")
     public Executor threadPoolTaskExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(3);
@@ -39,7 +39,7 @@ public class SpringAsyncConfig {
 
         @Override
         public void execute(Runnable task) {
-            executor.execute(task);
+            executor.execute(createWrappedRunnable(task));
         }
 
         @Override
@@ -89,6 +89,11 @@ public class SpringAsyncConfig {
             errorLogger.error("Failed to execute task. ",ex);
         }
 
+        public void destroy() {
+            if(executor instanceof ThreadPoolTaskExecutor){
+                ((ThreadPoolTaskExecutor) executor).shutdown();
+            }
+        }
     }
 
 }
