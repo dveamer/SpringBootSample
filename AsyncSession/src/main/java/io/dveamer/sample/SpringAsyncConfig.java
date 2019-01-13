@@ -22,19 +22,7 @@ public class SpringAsyncConfig {
     protected Logger logger = LoggerFactory.getLogger(getClass());
     protected Logger errorLogger = LoggerFactory.getLogger("error");
 
-    @Bean(name = "threadPoolTaskExecutor", destroyMethod = "shutdown")
-    public Executor threadPoolTaskExecutor() {
-        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-        taskExecutor.setCorePoolSize(3);
-        taskExecutor.setMaxPoolSize(30);
-        taskExecutor.setQueueCapacity(10);
-        taskExecutor.setThreadNamePrefix("Executor-");
-        taskExecutor.initialize();
-
-        return taskExecutor;
-    }
-
-    @Bean(name = "executorWithSession", destroyMethod = "destroy")
+    @Bean(name = "threadPoolTaskExecutor", destroyMethod = "destroy")
     public Executor executorWithSession() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(3);
