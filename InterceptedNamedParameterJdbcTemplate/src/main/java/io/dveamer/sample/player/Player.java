@@ -1,4 +1,4 @@
-package io.dveamer.sample.Player;
+package io.dveamer.sample.player;
 
 public class Player {
 
