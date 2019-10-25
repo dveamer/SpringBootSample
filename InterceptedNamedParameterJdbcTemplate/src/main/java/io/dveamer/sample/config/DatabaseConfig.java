@@ -7,6 +7,7 @@ import io.dveamer.sample.common.interceptor.jdbc.SqlIdJdbcInterceptor;
 import io.dveamer.sample.common.wrapper.jdbc.InterceptedNamedParameterJdbcTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -33,7 +34,9 @@ public class DatabaseConfig {
         commandInterceptors.add(new CudModifierJdbcInterceptor());
         commandInterceptors.add(printInterceptor);
 
-        return new InterceptedNamedParameterJdbcTemplate(new NamedParameterJdbcTemplate(dataSource), queryInterceptors, commandInterceptors);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate.setFetchSize(300);
+        return new InterceptedNamedParameterJdbcTemplate(new NamedParameterJdbcTemplate(jdbcTemplate), queryInterceptors, commandInterceptors);
     }
 
 }
