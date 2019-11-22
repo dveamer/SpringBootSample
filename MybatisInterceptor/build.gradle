@@ -1,0 +1,36 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'groovy'
+	id 'java'
+}
+
+
+group = 'io.dveamer'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.1.1'
+
+	runtimeOnly 'com.h2database:h2:1.4.193'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.withType(JavaCompile) { // Gradle 2.x or later version
+	options.encoding = 'UTF-8'
+}
+
+compileGroovy {
+	groovyOptions.encoding = 'UTF-8'  // affects *.groovy under src/main/groovy
+	options.encoding = 'UTF-8'        // affects *.java under src/main/groovy
+}

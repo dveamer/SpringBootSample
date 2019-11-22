@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="io.dveamer.sample.player.PlayerRepo">
+
+
+    <sql id="INSERT_COLUMNS">
+        , created_dt, created_by, updated_dt, updated_by
+    </sql>
+
+    <sql id="INSERT_VALUES">
+        , now(), #{createdBy}, now(), #{createdBy}
+    </sql>
+
+    <select id="newSeq" resultType="Long">
+        SELECT MAX(id) + 1 FROM player
+    </select>
+
+    <select id="findById" resultType="io.dveamer.sample.player.Player">
+        SELECT id, player_name
+        FROM player
+        WHERE 1=1
+        AND id = #{id}
+    </select>
+
+    <select id="findByPlayerId" resultType="io.dveamer.sample.player.Player">
+        SELECT id, player_name
+        FROM player
+        WHERE 1=1
+        AND id = #{player.id}
+    </select>
+
+
+    <insert id="insert">
+        INSERT INTO player
+        ( id
+        , player_name
+        <include refid="INSERT_COLUMNS" />
+        ) VALUES (
+        #{player.id}
+        , #{player.playerName}
+        <include refid="INSERT_VALUES" />
+        )
+    </insert>
+</mapper>
