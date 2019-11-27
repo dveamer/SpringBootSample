@@ -20,6 +20,7 @@ public class RequiredParamInterceptor implements Interceptor {
     public Object intercept(Invocation invocation) throws Throwable {
 
         Object oldParameter = invocation.getArgs()[1];
+        System.out.println(oldParameter);
 
         MappedStatement ms = (MappedStatement) invocation.getArgs()[0];
         BoundSql bs = ms.getBoundSql(oldParameter);
@@ -63,12 +64,18 @@ public class RequiredParamInterceptor implements Interceptor {
             return newMap;
         }
 
+        System.out.println(pmList);
         String detailKey = pmList.get(0).getProperty();
-        String key = detailKey.substring(0, detailKey.indexOf("."));
+        if(detailKey.indexOf(".")>-1){
+            String key = detailKey.substring(0, detailKey.indexOf("."));
+
+            Map<String, Object> newMap = defaultMap();
+            newMap.put(key, oldParameter);
+            return newMap;
+        }
 
         Map<String, Object> newMap = defaultMap();
-        newMap.put(key, oldParameter);
-
+        newMap.put("default", oldParameter);
         return newMap;
     }
 

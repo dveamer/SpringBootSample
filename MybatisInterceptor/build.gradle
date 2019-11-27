@@ -1,19 +1,46 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-	id 'groovy'
+    id 'groovy'
 	id 'java'
 }
 
 
 group = 'io.dveamer'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = 1.8
+
 
 repositories {
 	mavenCentral()
 }
 
+
+bootJar {
+    baseName = 'io.dveamer.sample'
+    version =  '0.0.1'
+}
+
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/main/java']
+		}
+		resources {
+			srcDirs = ['src/main/resources']
+		}
+	}
+
+	test {
+		java {
+			srcDirs = ['src/test/java']
+		}
+		resources {
+			srcDirs = ['src/test/resources']
+		}
+	}
+}
 
 
 dependencies {
@@ -33,4 +60,8 @@ tasks.withType(JavaCompile) { // Gradle 2.x or later version
 compileGroovy {
 	groovyOptions.encoding = 'UTF-8'  // affects *.groovy under src/main/groovy
 	options.encoding = 'UTF-8'        // affects *.java under src/main/groovy
+}
+
+test {
+    useJUnitPlatform()
 }

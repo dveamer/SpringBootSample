@@ -30,16 +30,51 @@
         AND id = #{player.id}
     </select>
 
+    <select id="findCreatorOf" resultType="Long">
+        SELECT created_by
+        FROM player
+        WHERE 1=1
+        AND id = #{player.id}
+    </select>
+
+
 
     <insert id="insert">
         INSERT INTO player
         ( id
         , player_name
-        <include refid="INSERT_COLUMNS" />
+        <include refid="common.INSERT_COLUMNS" />
         ) VALUES (
         #{player.id}
         , #{player.playerName}
-        <include refid="INSERT_VALUES" />
+        <include refid="common.INSERT_VALUES" />
         )
     </insert>
+
+
+    <insert id="insertTwoParam">
+        INSERT INTO player
+        ( id
+        , player_name
+        <include refid="common.INSERT_COLUMNS" />
+        ) VALUES (
+        #{player.id}
+        , #{playerName}
+        <include refid="common.INSERT_VALUES" />
+        )
+    </insert>
+
+
+    <insert id="insertTwoPrimitive">
+        INSERT INTO player
+        ( id
+        , player_name
+        <include refid="common.INSERT_COLUMNS" />
+        ) VALUES (
+        #{id}
+        , #{playerName}
+        <include refid="common.INSERT_VALUES" />
+        )
+    </insert>
+
 </mapper>

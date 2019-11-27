@@ -1,1 +1,3 @@
 curl -i -X POST -H "Content-Type:application/json" --data "{ \"playerName\" : \"player03\" }" http://localhost:8080/players
+
+curl -i -X GET -H "Content-Type:application/json" http://localhost:8080/players/3

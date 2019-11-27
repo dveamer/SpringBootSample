@@ -28,4 +28,16 @@ public class PlayerCtrl {
         return playerServ.register(player);
     }
 
+
+    @PostMapping("/players1")
+    public Player save1(@RequestBody Player player){
+        return playerServ.register1(player);
+    }
+
+    @PostMapping("/players2")
+    public Player save2(@RequestBody Player player){
+        return playerServ.register2(player);
+    }
+
+
 }

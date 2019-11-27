@@ -1,26 +1,40 @@
 package io.dveamer.sample.common.scope;
 
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-
-
 public class RequestScopeUtil {
 
-    public static Attribute getAttribute() {
-        Object result = RequestContextHolder.getRequestAttributes().getAttribute(Attribute.KEY, RequestAttributes.SCOPE_REQUEST);
+    private static ScopeStore scopeStore;
 
-        if(result==null){
-            return new Attribute();
+    public static synchronized void defineScope(ScopeStore inputScopeStore){
+        if(scopeStore!=null){
+            return;
+        }
+        scopeStore = inputScopeStore;
+    }
+
+
+    public static Attribute getAttribute() {
+
+        if(scopeStore ==null){
+            defineScope(new RequestScope());
         }
 
-        return (Attribute) result;
+        return scopeStore.getAttribute();
     }
 
     public static void setAttribute(Attribute attribute) {
-        RequestContextHolder.getRequestAttributes().setAttribute(Attribute.KEY, attribute, RequestAttributes.SCOPE_REQUEST);
+
+        if(scopeStore ==null){
+            defineScope(new RequestScope());
+        }
+
+        scopeStore.setAttribute(attribute);
     }
 
     public static void removeAttribute() {
-        RequestContextHolder.getRequestAttributes().removeAttribute(Attribute.KEY, RequestAttributes.SCOPE_REQUEST);
+
+        if(scopeStore ==null){
+            defineScope(new RequestScope());
+        }
+        scopeStore.removeAttribute();
     }
 }

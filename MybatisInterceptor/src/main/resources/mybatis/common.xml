@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="common">
+
+
+    <sql id="INSERT_COLUMNS">
+        , created_dt, created_by, updated_dt, updated_by
+    </sql>
+
+    <sql id="INSERT_VALUES">
+        , now(), #{createdBy}, now(), #{createdBy}
+    </sql>
+
+</mapper>
