@@ -19,6 +19,11 @@
 ~~~command
 $ gradle build
 $ java -jar build/libs/io.dveamer.sample-0.0.1.jar
+
+or
+
+$ mvn package
+$ java -jar target/sample-0.0.1.jar
 ~~~
 
 ### 방법 2 : gradle run
