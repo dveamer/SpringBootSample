@@ -1,4 +1,6 @@
-# SpringBootSample
+# SLF4J-Log4J2 Sample
+
+이 샘플 소스코드는 [SLF4J 와 Log4j 2 연동하기](http://dveamer.github.io/java/SLF4J-Log4J2.html) 문서를 작성하면서 함께 작성된 샘플입니다.  
 
 ## 필요환경
 
@@ -44,5 +46,7 @@ $ mvn spring-boot:run
   * Run > Edit Configurations > Groovy > build - 최초 1회
     - Script parameters에 run이라고 입력 후 OK 클릭
   * Run 재실행(Shift + F10) 후 build 선택
+
+
 
 

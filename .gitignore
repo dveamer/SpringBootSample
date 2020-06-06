@@ -3,3 +3,10 @@ build/
 .gradle
 .git
 log/
+
+
+target/
+gradle/
+gradlew
+gradlew.bat
+

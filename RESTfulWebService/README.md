@@ -1,4 +1,5 @@
-# SpringBootSample
+# RESTFullWebService Sample
+
 
 ## 필요환경
 
@@ -44,5 +45,7 @@ $ mvn spring-boot:run
   * Run > Edit Configurations > Groovy > build - 최초 1회
     - Script parameters에 run이라고 입력 후 OK 클릭
   * Run 재실행(Shift + F10) 후 build 선택
+
+
 
 
