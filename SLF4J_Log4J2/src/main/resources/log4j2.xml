@@ -39,6 +39,9 @@
         <Logger name="io.dveamer.sample" level="info" additivity="false">
             <AppenderRef ref="ASYNC_LogApp"/>
         </Logger>
+        <Logger name="io.dveamer.sample.manual" level="debug" additivity="false">
+            <AppenderRef ref="ASYNC_LogApp"/>
+        </Logger>
         <Root level="error">
             <AppenderRef ref="ASYNC_Exception"/>
         </Root>

@@ -1,6 +1,9 @@
 # SLF4J-Log4J2 Sample
 
-이 샘플 소스코드는 [SLF4J 와 Log4j 2 연동하기](http://dveamer.github.io/java/SLF4J-Log4J2.html) 문서를 작성하면서 함께 작성된 샘플입니다.  
+이 샘플 소스코드는 아래 문서들을 위해 작성된 샘플입니다. 
+
+  * [SLF4J 와 Log4j 2 연동하기](http://dveamer.github.io/java/SLF4J-Log4J2.html)   
+  * [SLF4J Logger 사용법 & 잘못된 사용법: Binding Parameters, Logging Exception Stack Trace](http://dveamer.github.io/backend/HowToUseSlf4j.html)   
 
 ## 필요환경
 
