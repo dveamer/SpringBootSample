@@ -73,10 +73,15 @@ public class ManualController {
 
     private void bindManyParameters(User user) {
 
-        // little poor performance
+        // little poor performance, good readability
         logger.debug("User id : {}, name : {}, job : {}", user.getName(), user.getEmail(), user.getJob());
 
-        // good performance - I recommend this.
+        // good performance, good readability, uncomfortable
+        logger.debug("User name : {}", user.getName());
+        logger.debug("User email : {}", user.getEmail());
+        logger.debug("User job : {}", user.getJob());
+
+        // good performance, good readability - I recommend this.
         logger.debug("User : {}", user);
     }
 
