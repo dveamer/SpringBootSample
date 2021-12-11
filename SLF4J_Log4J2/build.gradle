@@ -9,6 +9,10 @@ group = 'com.dveamer'
 version = '0.0.1'
 sourceCompatibility = '7'
 
+ext {
+    log4j2.version = '2.15.0'
+}
+
 repositories {
     mavenLocal()
     mavenCentral()
